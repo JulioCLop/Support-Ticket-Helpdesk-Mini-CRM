@@ -263,36 +263,40 @@ h1 {
 }
 
 .column {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.65);
   border-radius: var(--radius-lg);
-  padding: 16px;
+  padding: 18px;
   border: var(--border);
   display: flex;
   flex-direction: column;
   gap: 12px;
   min-height: fit-content;
   box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
 }
 
 .column-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   font-weight: 600;
-  padding-bottom: 4px;
-  margin-bottom: 4px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(31, 27, 22, 0.08);
 }
 
 .column-header > div {
-  font-size: 15px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .column-header span {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 500;
+  letter-spacing: 1.2px;
+  font-weight: 600;
 }
 
 .card {
@@ -325,6 +329,8 @@ h1 {
 
 .card.selected {
   outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  box-shadow: 0 8px 20px rgba(194, 75, 34, 0.15);
 }
 
 .card-head {
@@ -336,17 +342,21 @@ h1 {
 }
 
 .ticket-id {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--ink);
+  font-size: 12px;
+  letter-spacing: 0.3px;
 }
 
 .detail .ticket-id {
   display: inline-block;
-  font-size: 12px;
-  padding: 4px 10px;
+  font-size: 11px;
+  padding: 5px 12px;
   background: var(--bg-deep);
   border-radius: 6px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .priority {
@@ -374,6 +384,9 @@ h1 {
 .card h4 {
   margin: 0;
   font-size: 15px;
+  line-height: 1.4;
+  color: var(--ink);
+  font-weight: 600;
 }
 
 .card-meta {
@@ -381,14 +394,20 @@ h1 {
   justify-content: space-between;
   font-size: 12px;
   color: var(--muted);
+  line-height: 1.4;
+}
+
+.card-meta span {
+  font-weight: 500;
 }
 
 .card-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
+  font-size: 11px;
   color: var(--muted);
+  font-weight: 500;
 }
 
 .tags {
@@ -399,9 +418,11 @@ h1 {
 
 .tag {
   font-size: 11px;
-  padding: 4px 8px;
+  padding: 4px 10px;
   border-radius: 999px;
   background: var(--bg-deep);
+  font-weight: 500;
+  color: var(--ink);
 }
 
 .sla {
@@ -429,13 +450,32 @@ h1 {
 .detail {
   background: var(--panel);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: 24px;
   border: var(--border);
   box-shadow: var(--shadow);
   min-height: 420px;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
   align-self: start;
   position: sticky;
   top: 24px;
+}
+
+.detail::-webkit-scrollbar {
+  width: 8px;
+}
+
+.detail::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.detail::-webkit-scrollbar-thumb {
+  background: rgba(31, 27, 22, 0.15);
+  border-radius: 4px;
+}
+
+.detail::-webkit-scrollbar-thumb:hover {
+  background: rgba(31, 27, 22, 0.25);
 }
 
 .detail-empty {
@@ -447,11 +487,15 @@ h1 {
 .detail-card {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 
 .detail-card > .tags {
-  margin-top: -6px;
+  margin-top: -8px;
+}
+
+.detail-card > div:not(:first-child):not(.tags) {
+  padding-top: 4px;
 }
 
 .detail-header {
@@ -468,17 +512,20 @@ h1 {
 }
 
 .detail-header h2 {
-  margin: 6px 0 8px;
-  font-size: 20px;
-  line-height: 1.3;
+  margin: 6px 0 10px;
+  font-size: 19px;
+  line-height: 1.35;
   word-wrap: break-word;
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .detail-header p {
   margin: 0;
   color: var(--muted);
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.6;
+  font-weight: 500;
 }
 
 .detail-cta {
@@ -500,12 +547,14 @@ h1 {
 }
 
 .detail h3 {
-  margin: 4px 0 10px;
-  font-size: 12px;
+  margin: 0 0 12px;
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   color: var(--muted);
-  font-weight: 600;
+  font-weight: 700;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(31, 27, 22, 0.08);
 }
 
 .info-grid {
@@ -517,11 +566,12 @@ h1 {
 .info-item {
   background: #fff;
   border-radius: var(--radius-md);
-  padding: 12px 14px;
+  padding: 14px 16px;
   border: var(--border);
   font-size: 14px;
-  font-weight: 500;
-  line-height: 1.4;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
 }
 
 .info-item span {
@@ -537,18 +587,25 @@ h1 {
 .assignee {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+}
+
+.assignee > div:last-child {
+  font-weight: 600;
+  color: var(--ink);
 }
 
 .avatar {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: var(--accent-soft);
   color: var(--accent-dark);
   display: grid;
   place-items: center;
   font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
 }
 
 .timeline {
@@ -560,24 +617,30 @@ h1 {
 .timeline-item {
   background: #fff;
   border-radius: var(--radius-md);
-  padding: 12px 14px;
+  padding: 14px 16px;
   border: var(--border);
+  transition: box-shadow 0.2s ease;
+}
+
+.timeline-item:hover {
+  box-shadow: 0 2px 8px rgba(32, 25, 16, 0.08);
 }
 
 .timeline-item strong {
   display: block;
   font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
   color: var(--muted);
-  margin-bottom: 6px;
-  font-weight: 600;
+  margin-bottom: 8px;
+  font-weight: 700;
 }
 
 .timeline-item div {
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--ink);
+  font-weight: 500;
 }
 
 .list-view {
